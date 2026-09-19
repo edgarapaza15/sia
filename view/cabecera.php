@@ -11,6 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/estilo.css">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -32,13 +33,14 @@
           <li class="nav-item active">
             <a class="nav-link" href="bienvenido.php">Inicio <span class="sr-only">(current)</span></a>
           </li>
+          <!--
           <li class="nav-item">
             <a class="nav-link" href="nuevoProyecto.php">Nuevo Proyecto</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="listado.php">Lista de Proyectos</a>
           </li>
-
+          -->
           <li class="nav-item">
             <a class="nav-link" href="buscarIndice.php">Buscador de Índices</a>
           </li>
