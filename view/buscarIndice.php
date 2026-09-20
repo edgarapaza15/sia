@@ -34,15 +34,6 @@ require_once "header.php";
             </form>
           </tr>
           <tr>
-            <form class="form-inline" action='buscarOtorgante.php' method='post' name='fregistro' id='fregistro' role='form'>
-              <td>Buscar por Otorgante:</td>
-              <td><input type="search" class="form-control" id="txtOtorgante" name="txtOtorgante" placeholder="">
-</td>
-              <td><button type="submit" name="otorgante" value="otorgante" class="btn btn-primary" > <span class="glyphicon glyphicon-search"></span> Buscar Por Otorgante</button>
-</td>
-            </form>
-          </tr>
-          <tr>
             <form class="form-inline" action='buscarFavorecido.php' method='post' name='fregistro' id='fregistro' role='form'>
               <td>Buscar por Favorecido</td>
               <td><input type="text" class="form-control" id="txtFavorecido" name="txtFavorecido" placeholder="">

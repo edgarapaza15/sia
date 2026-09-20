@@ -31,10 +31,10 @@ $total  = $result->num_rows;
         <thead>
           <tr>
             <th>Núm</th>
-            <th>Nombre Notario</th>
+            <th width="350px">Nombre Notario</th>
             <th>Otorgante</th>
             <th>Favorecido</th>
-            <th>Fecha</th>
+            <th width="150px">Fecha</th>
             <th>Serie</th>
             <th>Folio</th>
             <th>Escritura</th>
