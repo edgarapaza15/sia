@@ -1,18 +1,17 @@
 <?php
 session_start();
 
-if(!empty($_SESSION['personal']))
-{
+if (!empty($_SESSION['personal'])) {
 
-require ("cabecera.php");
-//llamamos a la clase
-require_once "../model/proyectos.model.php";
-$proyecto = new Proyectos();
-$proyecto->ProyectoAbierto();
-$abierto   = $proyecto->ProyectoAbierto();
-$cerrado   = $proyecto->ProyectoCerrado();
+    require("header.php");
+    //llamamos a la clase
+    require_once "../model/proyectos.model.php";
+    $proyecto = new Proyectos();
+    $proyecto->ProyectoAbierto();
+    $abierto   = $proyecto->ProyectoAbierto();
+    $cerrado   = $proyecto->ProyectoCerrado();
 
-?>
+    ?>
 
 <style>
   body{
@@ -37,10 +36,10 @@ $cerrado   = $proyecto->ProyectoCerrado();
 				</thead>
 				<tbody>
 					<?php
-					$_SESSION['oPDF'] = array();
-					while ($lista1 = $abierto->fetch_assoc()):
-						$_SESSION['oPDF'][] = $lista1;
-						?>
+                        $_SESSION['oPDF'] = [];
+    while ($lista1 = $abierto->fetch_assoc()):
+        $_SESSION['oPDF'][] = $lista1;
+        ?>
 						<tr>
 							<td><?php echo $lista1['notario'];?></td>
 							<td><?php echo $lista1['numIndice'];?></td>
@@ -49,20 +48,19 @@ $cerrado   = $proyecto->ProyectoCerrado();
 
 								<?php
 
-								switch($lista1['estado'])
-								{
-								case 'EN REVISION':
-									echo "<div class='alert alert-danger'>".$lista1['estado']."</div>";
-									break;
-								case 'NO CONCLUIDO':
-									echo "<div class='alert alert-info'>".$lista1['estado']."</div>";
-									break;
-								case 'NUEVO':
-									echo "<div style='background-color: yellow;color:red;'>".$lista1['estado']."</div>";
-									break;
-								}
+                switch ($lista1['estado']) {
+                    case 'EN REVISION':
+                        echo "<div class='alert alert-danger'>" . $lista1['estado'] . "</div>";
+                        break;
+                    case 'NO CONCLUIDO':
+                        echo "<div class='alert alert-info'>" . $lista1['estado'] . "</div>";
+                        break;
+                    case 'NUEVO':
+                        echo "<div style='background-color: yellow;color:red;'>" . $lista1['estado'] . "</div>";
+                        break;
+                }
 
-								?>
+        ?>
 
 							</td>
 							<td>
@@ -70,8 +68,8 @@ $cerrado   = $proyecto->ProyectoCerrado();
 							</td>
 						</tr>
 						<?php
-					endwhile;
-					?>
+    endwhile;
+    ?>
 				</tbody>
 
 			</table>
@@ -97,10 +95,10 @@ $cerrado   = $proyecto->ProyectoCerrado();
 				</thead>
 				<tbody>
 					<?php
-					$_SESSION['oPDF'] = array();
-					while ($lista2 = $cerrado->fetch_assoc()) {
-						$_SESSION['oPDF'][] = $lista2;
-						?>
+    $_SESSION['oPDF'] = [];
+    while ($lista2 = $cerrado->fetch_assoc()) {
+        $_SESSION['oPDF'][] = $lista2;
+        ?>
 						<tr>
 
 							<td><?php echo $lista2['notario'];?></td>
@@ -110,8 +108,8 @@ $cerrado   = $proyecto->ProyectoCerrado();
 
 						</tr>
 						<?php
-					}
-					?>
+    }
+    ?>
 				</tbody>
 				<tfoot>
 
@@ -132,7 +130,7 @@ $cerrado   = $proyecto->ProyectoCerrado();
 
 $_SESSION['proyecto'] = $lista1['CodProyecto'];
 
-}else{
-	header("Location: ../index.html");
+} else {
+    header("Location: ../index.html");
 }
 ?>

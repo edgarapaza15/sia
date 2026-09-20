@@ -1,11 +1,11 @@
 <?php
 session_start();
-	require("cabecera.php");
+require("header.php");
 
 
-    include "../model/notario.model.php";
-	$notarios = new Notarios();
-	$dat = $notarios->ListadoNotarios();
+include "../model/notario.model.php";
+$notarios = new Notarios();
+$dat = $notarios->ListadoNotarios();
 
 
 ?>
@@ -16,14 +16,15 @@ session_start();
 
 				<center><h3>Registro de Nuevo Proyecto</h3></center>
 				<?php
-					if (isset($_SESSION['mensaje']) AND $_SESSION['mensaje'] != '') {
-				?>
+                    if (isset($_SESSION['mensaje']) and $_SESSION['mensaje'] != '') {
+                        ?>
 				<div class="alert alert-info">
-					<?php echo $_SESSION['mensaje']; unset($_SESSION['mensaje']);?>
+					<?php echo $_SESSION['mensaje'];
+                        unset($_SESSION['mensaje']);?>
 				</div>
 				<?php
-					}
-				?>
+                    }
+?>
 
 				<form class="form-horizontal" method='post' name='fregistro' id='fregistro' action='../controller/nuevo-proyecto-verifica.php' role='form'>
 
@@ -34,7 +35,7 @@ session_start();
 								<option value="0">SELECCIONE NOTARIO</option>
 									<?php
 
-									while ($row = $dat->fetch_array()) { ?>
+                    while ($row = $dat->fetch_array()) { ?>
 										<option value="<?php echo $row[1]; ?>">
 											<?php echo $row[0]; ?>
 										</option>

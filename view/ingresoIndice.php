@@ -1,16 +1,15 @@
 <?php
 session_start();
 
-if(!empty($_SESSION['personal']))
-{
+if (!empty($_SESSION['personal'])) {
 
-  $_SESSION['codProyecto'] = $_REQUEST['codProy'];
-  $_SESSION['codNotario'] = $_REQUEST['codNot'];
-  $_SESSION['Notario'] = $_REQUEST['Notario'];
+    $_SESSION['codProyecto'] = $_REQUEST['codProy'];
+    $_SESSION['codNotario'] = $_REQUEST['codNot'];
+    $_SESSION['Notario'] = $_REQUEST['Notario'];
 
 
-	require("cabecera.php");
-?>
+    require("header.php");
+    ?>
 	<script languaje="text/javascript">
 		function justNumbers(e)
 		{
@@ -41,7 +40,7 @@ if(!empty($_SESSION['personal']))
 
 		<h3>Notario: <?php echo $_REQUEST['Notario'];?></h3>
 		<p>
-			<?php echo "IdPersonal: ".$_SESSION['personal']; ?>
+			<?php echo "IdPersonal: " . $_SESSION['personal']; ?>
 		</p>
 
 		<form class="form-horizontal" method='post' name='fregistro' id='fregistro' action='../controller/nuevo-verifica.php' role='form'>
@@ -170,16 +169,17 @@ if(!empty($_SESSION['personal']))
 	</div>
 
 	<?php
-				if (isset($_SESSION['mensaje']) AND $_SESSION['mensaje'] != "") {
-					?>
+                    if (isset($_SESSION['mensaje']) and $_SESSION['mensaje'] != "") {
+                        ?>
 					<div class="alert alert-info">
-						<?php echo $_SESSION['mensaje']; unset($_SESSION['mensaje']);?>
+						<?php echo $_SESSION['mensaje'];
+                        unset($_SESSION['mensaje']);?>
 					</div>
 <?php
-				}
+                    }
 
-}else{
-	header("Location: ../index.html");
+} else {
+    header("Location: ../index.html");
 }
 ?>
 

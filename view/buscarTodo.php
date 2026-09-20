@@ -1,34 +1,34 @@
 <?php
 session_start();
 
-	require("cabecera.php");
+require("header.php");
 
-	require_once("../model/Conexion.php");
+require_once("../model/Conexion.php");
 
-	//Conexion con Base de Datos
-	$conn = new Conexion();
-	$link = $conn->Conectar();
+//Conexion con Base de Datos
+$conn = new Conexion();
+$link = $conn->Conectar();
 
-	$sql = "SELECT i.codIndice, CONCAT(n.nom_not,' ',n.mat_not,' ',n.pat_not) AS notario,
+$sql = "SELECT i.codIndice, CONCAT(n.nom_not,' ',n.mat_not,' ',n.pat_not) AS notario,
 i.otorgante,i.favorecido,i.fecha,i.subserie,i.folio, i.escritura,i.bien
 FROM indices as i, Notario as n
 WHERE i.codNotario = n.codNotario LIMIT 1000;";
-		//echo $trabajando;
+//echo $trabajando;
 
-	$result = $link->query($sql);
-	$total	= $result->num_rows;
+$result = $link->query($sql);
+$total = $result->num_rows;
 
 ?>
 
-	<div class="container-fluid">
+<div class="container-fluid">
 
-		<div class="row">
-			<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-12">
 
-			<center><h3>Lista de todos los Índices</h3></center>
+		<center><h3>Lista de todos los Índices</h3></center>
 
-			<?php echo "<h4>Número de Índices Encontrados: $total (Solo se muestran 1000 Registros de mas de 6000)</h4> " ?>
-					<table class="table table-striped table-bordered table-responsive" >
+		<?php echo "<h4>Número de Índices Encontrados: $total (Solo se muestran 1000 Registros de mas de 6000)</h4> " ?>
+				<table class="table table-striped table-bordered table-responsive" >
 						<thead>
 							<tr>
 								<th>Número</th>
@@ -44,11 +44,11 @@ WHERE i.codNotario = n.codNotario LIMIT 1000;";
 						</thead>
 						<tbody>
 						<?php
-						$_SESSION['oPDF'] = array();
+                        $_SESSION['oPDF'] = [];
 
-						while ($lista1 = $result->fetch_assoc()) {
-						$_SESSION['oPDF'][] = $lista1;
-						?>
+while ($lista1 = $result->fetch_assoc()) {
+    $_SESSION['oPDF'][] = $lista1;
+    ?>
 								<tr>
 									<td><?php echo $lista1['codIndice'];?></td>
 									<td><?php echo $lista1['notario'];?></td>
@@ -67,8 +67,8 @@ WHERE i.codNotario = n.codNotario LIMIT 1000;";
 									</td>
 								</tr>
 						<?php
-						}
-						?>
+}
+?>
 						</tbody>
 						<tfoot>
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "cabecera.php";
+require_once "header.php";
 ?>
 
 <div class="container">
@@ -12,14 +12,15 @@ include "cabecera.php";
 		<div class="col">
 
 			<?php
-			if (isset($_SESSION['mensaje']) AND $_SESSION['mensaje'] != '') {
-				?>
+            if (isset($_SESSION['mensaje']) and $_SESSION['mensaje'] != '') {
+                ?>
 				<div class="alert alert-info">
-					<?php echo $_SESSION['mensaje']; unset($_SESSION['mensaje']);?>
+					<?php echo $_SESSION['mensaje'];
+                unset($_SESSION['mensaje']);?>
 				</div>
 				<?php
-			}
-			?>
+            }
+?>
 
 			<form class="form-inline" action='buscarTodo.php' method='post' name='fregistro' id='fregistro' role='form'>
 				<div class="form-group">

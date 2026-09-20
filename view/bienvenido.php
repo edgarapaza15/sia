@@ -2,15 +2,14 @@
 session_start();
 require_once("../model/personal.model.php");
 
-if(!empty($_SESSION['personal']))
-{
-	require("cabecera.php");
+if (!empty($_SESSION['personal'])) {
+    require("header.php");
 
 
-		$personal = new Personal();
-		$data = $personal->getPersonal($_SESSION['personal']);
+    $personal = new Personal();
+    $data = $personal->getPersonal($_SESSION['personal']);
 
-?>
+    ?>
 <body>
 	<div class="container">
 		<div class="row">
@@ -23,7 +22,7 @@ if(!empty($_SESSION['personal']))
 			</div>
 			<div class="col-md-12">
         <h2>Comunicado</h2>
-        
+
         <h3 class="alert alert-success">Ya tenemos 16,205 Escrituras (Luis Jimenez) hasta la fecha
           y del nuevo notario (Jorge Cuentas) 417 Escrituras ingresadas.  Gracias por su trabajo.</h3>
 
@@ -38,7 +37,7 @@ if(!empty($_SESSION['personal']))
 </body>
 </html>
 <?php
-}else{
-	header("Location: ../index.html");
+} else {
+    header("Location: ../index.html");
 }
 ?>

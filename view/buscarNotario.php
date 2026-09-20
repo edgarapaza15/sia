@@ -1,21 +1,21 @@
 <?php
 session_start();
 
-	require("cabecera.php");
+require("header.php");
 
-	require_once("../model/Conexion.php");
+require_once("../model/Conexion.php");
 
-	//Conexion con Base de Datos
-	$conn = new Conexion();
-	$link = $conn->Conectar();
+//Conexion con Base de Datos
+$conn = new Conexion();
+$link = $conn->Conectar();
 
-	$notario=$_POST["txtNotario"];
+$notario = $_POST["txtNotario"];
 
-	$sql = "SELECT indices.codIndice,CONCAT(Notario.nom_not,' ',Notario.mat_not,' ',Notario.pat_not) AS notario,indices.otorgante,indices.favorecido,indices.fecha,indices.subserie,indices.folio,indices.escritura,indices.bien FROM indices INNER JOIN Notario ON indices.codNotario=Notario.codNotario WHERE indices.codNotario = $notario";
-		//echo $consulta;
+$sql = "SELECT indices.codIndice,CONCAT(Notario.nom_not,' ',Notario.mat_not,' ',Notario.pat_not) AS notario,indices.otorgante,indices.favorecido,indices.fecha,indices.subserie,indices.folio,indices.escritura,indices.bien FROM indices INNER JOIN Notario ON indices.codNotario=Notario.codNotario WHERE indices.codNotario = $notario";
+//echo $consulta;
 
-	$result = $link->query($sql);
-	$total	= $result->num_rows;
+$result = $link->query($sql);
+$total	= $result->num_rows;
 
 ?>
 <div class="container-fluid">
@@ -39,10 +39,10 @@ session_start();
 						</thead>
 						<tbody>
 <?php
-							$_SESSION['oPDF'] = array();
-							while ($lista1 = $result->fetch_assoc()) {
-								$_SESSION['oPDF'][] = $lista1;
-?>
+                            $_SESSION['oPDF'] = [];
+while ($lista1 = $result->fetch_assoc()) {
+    $_SESSION['oPDF'][] = $lista1;
+    ?>
 								<tr>
 									<td><?php echo $lista1['codIndice'];?></td>
 									<td><?php echo $lista1['notario'];?></td>
@@ -61,7 +61,7 @@ session_start();
 									</td>
 								</tr>
 <?php
-							}
+}
 ?>
 						</tbody>
 						<tfoot>

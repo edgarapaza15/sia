@@ -1,5 +1,5 @@
 <?php
-	require("cabecera.php");
+require("header.php");
 ?>
 
 	<div class="container">
