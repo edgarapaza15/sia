@@ -1,185 +1,597 @@
 /* ==========================================================================
-   Estilos Generales / Reset Básico
+   SIA · Estilos de aplicación (personal)
+   Archivo Regional de Puno — Índices Huancané
    ========================================================================== */
 :root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --bg-main: #f8fafc;
-  --bg-card: #ffffff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --radius: 8px;
-  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --ink: #0c2a3a;
+  --ink-soft: #1a4558;
+  --teal: #0e7490;
+  --teal-deep: #0a5c70;
+  --teal-soft: #e6f4f7;
+  --gold: #b8892c;
+  --gold-soft: #f7efd9;
+  --paper: #f0f3f5;
+  --paper-card: #ffffff;
+  --muted: #5c6b73;
+  --border: #d5dee3;
+  --danger: #b42318;
+  --success: #067647;
+  --shadow-sm: 0 1px 2px rgba(12, 42, 58, 0.05);
+  --shadow-md: 0 10px 28px rgba(12, 42, 58, 0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --nav-h: 64px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Outfit", system-ui, sans-serif;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-family);
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  padding-top: calc(var(--nav-h) + 1.5rem);
+  padding-bottom: 2.5rem;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
   line-height: 1.6;
-  padding: 2rem;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 90% 50% at 0% 0%, rgba(14, 116, 144, 0.08), transparent 50%),
+    radial-gradient(ellipse 70% 40% at 100% 10%, rgba(184, 137, 44, 0.07), transparent 45%),
+    linear-gradient(180deg, #e8eef1 0%, var(--paper) 40%, #e4eaed 100%);
+  background-attachment: fixed;
 }
 
-/* ==========================================================================
-   Contenedor Principal / Tarjeta
-   ========================================================================== */
-.container, .main-content {
-  max-width: 1100px;
-  margin: 0 auto;
-  background: var(--bg-card);
-  padding: 2rem;
+/* --------------------------------------------------------------------------
+   Tipografía
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(1.6rem, 3vw, 2rem); }
+h2 { font-size: clamp(1.35rem, 2.5vw, 1.65rem); }
+h3 { font-size: 1.25rem; margin-bottom: 1rem; }
+
+p { color: var(--ink-soft); }
+
+a {
+  color: var(--teal-deep);
+  transition: color 0.15s ease;
+}
+a:hover { color: var(--teal); text-decoration: none; }
+
+/* --------------------------------------------------------------------------
+   Navbar
+   -------------------------------------------------------------------------- */
+.navbar.fixed-top,
+.navbar.navbar-dark {
+  min-height: var(--nav-h);
+  padding: 0.65rem 1.25rem;
+  background: linear-gradient(105deg, var(--ink) 0%, var(--ink-soft) 55%, #0e5f74 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(12, 42, 58, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff !important;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.navbar-brand::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184, 137, 44, 0.35);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.78) !important;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Ocultar buscador decorativo del navbar */
+.navbar .form-inline {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Layout / contenedores
+   -------------------------------------------------------------------------- */
+.container,
+.container-fluid {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  background: transparent;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+
+.container > .row,
+.page-panel,
+.main-content {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-}
-
-h1, h2, h3 {
-  color: var(--text-main);
+  padding: 1.5rem 1.75rem;
   margin-bottom: 1.25rem;
-  font-weight: 600;
 }
 
-/* ==========================================================================
-   Formulario de Búsqueda y Filtros
-   ========================================================================== */
-form, .search-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  align-items: center;
-}
-
-input[type="text"],
-input[type="date"],
-select {
-  flex: 1;
-  min-width: 220px;
-  padding: 0.65rem 1rem;
-  border: 1px solid var(--border-color);
+.container-fluid > .row {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-size: 0.95rem;
-  color: var(--text-main);
-  background-color: #fff;
+  box-shadow: var(--shadow-md);
+  padding: 1.25rem 1.5rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Espaciadores legacy del header */
+body > br {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Alertas / mensajes
+   -------------------------------------------------------------------------- */
+.alert {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-sm);
+}
+
+.alert-info {
+  background: var(--teal-soft);
+  color: var(--ink-soft);
+  border-left: 4px solid var(--teal);
+}
+
+.alert-success {
+  background: #e8f8ef;
+  color: #0b4a2e;
+  border-left: 4px solid var(--success);
+}
+
+.alert-danger,
+.alert-warning {
+  border-left-width: 4px;
+}
+
+.alert h3,
+.alert h2 {
+  margin: 0 0 0.35rem;
+  color: inherit;
+}
+
+.alert h3 span {
+  color: var(--teal);
+}
+
+/* --------------------------------------------------------------------------
+   Formularios
+   -------------------------------------------------------------------------- */
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.form-control,
+input[type="text"],
+input[type="search"],
+input[type="date"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.7rem 0.95rem;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-input[type="text"]:focus,
-input[type="date"]:focus,
-select:focus {
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(14, 116, 144, 0.14);
 }
 
-/* Botones */
-button, 
+/* Campos de ingreso de índices */
+.cajas {
+  background-color: #fff !important;
+  border: 1.5px solid var(--border) !important;
+  font-size: 1rem !important;
+}
+
+.cajas:focus {
+  border-color: var(--teal) !important;
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.form-inline .form-control {
+  width: auto;
+  min-width: 180px;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Botones
+   -------------------------------------------------------------------------- */
 .btn,
+button,
 input[type="submit"] {
-  background-color: var(--primary);
-  color: #ffffff;
-  padding: 0.65rem 1.25rem;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  padding: 0.65rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
   text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.2s ease, background 0.2s ease;
 }
 
-button:hover, 
-.btn:hover,
-input[type="submit"]:hover {
-  background-color: var(--primary-hover);
-}
-
-button:active, 
 .btn:active,
+button:active,
 input[type="submit"]:active {
   transform: translateY(1px);
 }
 
-.btn-secondary {
-  background-color: #e2e8f0;
-  color: var(--text-main);
+.btn-primary,
+input[type="submit"].btn-primary,
+button.btn-primary {
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  color: #fff !important;
+  box-shadow: 0 8px 18px rgba(14, 116, 144, 0.25);
 }
 
+.btn-primary:hover {
+  filter: brightness(1.05);
+  color: #fff !important;
+}
+
+.btn-success,
+.btn-success.btn-lg {
+  background: linear-gradient(135deg, #0f9f6e, #067647);
+  color: #fff !important;
+  border: none;
+  box-shadow: 0 8px 18px rgba(6, 118, 71, 0.22);
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+}
+
+.btn-success:hover {
+  filter: brightness(1.05);
+  color: #fff !important;
+}
+
+.btn-default,
+.btn-secondary,
+.btn-outline-success {
+  background: #e8eef1;
+  color: var(--ink) !important;
+  border: 1px solid var(--border);
+}
+
+.btn-default:hover,
 .btn-secondary:hover {
-  background-color: #cbd5e1;
+  background: #dce5ea;
 }
 
-/* ==========================================================================
-   Tabla de Resultados / Índices
-   ========================================================================== */
-.table-responsive {
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.btn-group .btn {
+  border-radius: var(--radius-sm) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Tablas
+   -------------------------------------------------------------------------- */
+.table-responsive,
+table.table-responsive {
+  display: block;
   width: 100%;
   overflow-x: auto;
-  margin-top: 1rem;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
 }
 
-table {
+table,
+.table {
   width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.95rem;
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  background: #fff;
 }
 
+.table thead th,
+table thead th,
 table th {
-  background-color: #f1f5f9;
-  color: var(--text-muted);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #eef4f6;
+  color: var(--muted);
+  font-family: var(--font-body);
   font-weight: 600;
-  padding: 0.75rem 1rem;
-  border-bottom: 2px solid var(--border-color);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-}
-
-table td {
   padding: 0.85rem 1rem;
-  border-bottom: 1px solid var(--border-color);
-  color: var(--text-main);
+  border-bottom: 2px solid var(--border);
+  border-top: none;
+  white-space: nowrap;
 }
 
-table tbody tr {
-  transition: background-color 0.15s ease;
+.table td,
+table td {
+  padding: 0.8rem 1rem;
+  vertical-align: middle;
+  border-top: 1px solid var(--border);
+  color: var(--ink);
 }
 
+.table-striped tbody tr:nth-of-type(odd),
+.table tbody tr:nth-child(odd) {
+  background-color: #fafcfd;
+}
+
+.table tbody tr {
+  transition: background-color 0.12s ease;
+}
+
+.table tbody tr:hover,
 table tbody tr:hover {
-  background-color: #f8fafc;
+  background-color: var(--teal-soft) !important;
 }
 
-/* Estado Vacío / Sin Resultados */
-.no-results {
-  text-align: center;
-  padding: 2rem;
-  color: var(--text-muted);
-  font-style: italic;
+.table-bordered,
+.table-bordered td,
+.table-bordered th {
+  border-color: var(--border);
 }
 
-/* Badges / Etiquetas de Estado */
+/* Buscador: tabla de formularios → panel moderno */
+.container .col table.search-grid,
+.container .col table:not(.table) {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.75rem;
+  background: transparent;
+}
+
+.container .col table.search-grid thead,
+.container .col table:not(.table) thead {
+  display: none;
+}
+
+.container .col table.search-grid tbody tr,
+.container .col table:not(.table) tbody tr {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(200px, 1.4fr) auto;
+  gap: 0.85rem;
+  align-items: center;
+  background: #f7fafb;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.container .col table.search-grid tbody tr:hover,
+.container .col table:not(.table) tbody tr:hover {
+  border-color: rgba(14, 116, 144, 0.35);
+  box-shadow: 0 8px 20px rgba(12, 42, 58, 0.06);
+  background: #fff;
+}
+
+.container .col table.search-grid td,
+.container .col table:not(.table) td {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+.container .col table.search-grid td:first-child,
+.container .col table.search-grid label,
+.container .col table:not(.table) td:first-child,
+.container .col table:not(.table) label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.container .col > form.form-inline {
+  margin-bottom: 1rem;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(135deg, var(--teal-soft), #fff);
+  border: 1px solid rgba(14, 116, 144, 0.2);
+  border-radius: var(--radius);
+}
+
+/* --------------------------------------------------------------------------
+   Utilidades de página
+   -------------------------------------------------------------------------- */
+center h3,
+.container center h3 {
+  font-family: var(--font-display);
+  text-align: left;
+  display: block;
+}
+
+.container h4,
+.container-fluid h4 {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: var(--gold-soft);
+  display: inline-flex;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  margin: 0.5rem 0 1rem;
+}
+
 .badge {
   display: inline-block;
-  padding: 0.25rem 0.6rem;
-  border-radius: 9999px;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.badge-success { background-color: #dcfce7; color: #166534; }
-.badge-warning { background-color: #fef3c7; color: #92400e; }
-.badge-danger  { background-color: #fee2e2; color: #991b1b; }
+.badge-success { background: #dcfce7; color: #166534; }
+.badge-warning { background: #fef3c7; color: #92400e; }
+.badge-danger  { background: #fee2e2; color: #991b1b; }
+
+.no-results {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--muted);
+}
+
+.glyphicon {
+  display: none;
+}
+
+/* Página bienvenida */
+.alert-info + .col-md-12,
+.container .col-md-12 + .col-md-12 {
+  margin-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  body {
+    padding-top: calc(var(--nav-h) + 1rem);
+  }
+
+  .container > .row,
+  .container-fluid > .row {
+    padding: 1.1rem;
+  }
+
+  .container .col table.search-grid tbody tr,
+  .container .col table:not(.table) tbody tr {
+    grid-template-columns: 1fr;
+  }
+
+  .form-inline .form-control {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .btn,
+  button {
+    width: 100%;
+  }
+
+  .btn-group .btn {
+    width: 100%;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .navbar {
+    display: none !important;
+  }
+
+  .container,
+  .container-fluid,
+  .container > .row {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+}

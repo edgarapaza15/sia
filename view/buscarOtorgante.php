@@ -7,15 +7,13 @@ require_once("../model/Conexion.php");
 
 //Conexion con Base de Datos
 $conn = new Conexion();
-$link = $conn->Conectar();
 
 $otorgante = $_POST["txtOtorgante"];
 
 $sql = "SELECT indices.codIndice,CONCAT(Notario.nom_not,' ',Notario.mat_not,' ',Notario.pat_not) AS notario,indices.otorgante,indices.favorecido,indices.fecha,indices.subserie,indices.folio,indices.escritura,indices.bien
 	FROM indices INNER JOIN Notario ON indices.codNotario=Notario.codNotario WHERE indices.otorgante LIKE '%$otorgante%'";
 
-
-$result = $link->query($sql);
+$result = $conn->ConsultaCon($sql);
 $total  = $result->num_rows;
 
 ?>
@@ -27,14 +25,14 @@ $total  = $result->num_rows;
       <center><h3>Lista de Índices por Otorgantes</h3></center>
       <?php echo "<h4>Número de Índices Encontrados: $total datos encontrados.</h4> " ?>
 
-      <table class="table table-striped table-bordered table-responsive" >
+      <table class="table table-striped table-responsive" >
         <thead>
           <tr>
             <th>Núm</th>
-            <th width="350px">Nombre Notario</th>
-            <th>Otorgante</th>
+            <th>Nombre Notario</th>
+            <th width = "150">Otorgante</th>
             <th>Favorecido</th>
-            <th width="150px">Fecha</th>
+            <th>Fecha</th>
             <th>Serie</th>
             <th>Folio</th>
             <th>Escritura</th>
@@ -44,10 +42,10 @@ $total  = $result->num_rows;
         <tbody>
           <?php
             $i = 1;
-$_SESSION['oPDF'] = [];
-while ($lista1 = $result->fetch_assoc()) {
-    $_SESSION['oPDF'][] = $lista1;
-    ?>
+            $_SESSION['oPDF'] = [];
+            while ($lista1 = $result->fetch_assoc()) {
+                $_SESSION['oPDF'][] = $lista1;
+          ?>
 
           <tr>
             <td><?php echo $i;?></td>
@@ -62,7 +60,8 @@ while ($lista1 = $result->fetch_assoc()) {
           </tr>
           <?php
             $i++;
-}    ?>
+            }
+          ?>
         </tbody>
       </table>
 

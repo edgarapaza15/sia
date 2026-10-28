@@ -7,14 +7,12 @@ require_once("../model/Conexion.php");
 
 //Conexion con Base de Datos
 $conn = new Conexion();
-$link = $conn->Conectar();
 
 $bien = $_POST["txtBien"];
 
-$sql = "SELECT indices.codIndice,CONCAT(Notario.nom_not,' ',Notario.mat_not,' ',Notario.pat_not) AS notario,indices.otorgante,indices.favorecido,indices.fecha,indices.subserie,indices.folio,indices.escritura,indices.bien FROM indices INNER JOIN Notario ON indices.codNotario=Notario.codNotario WHERE indices.bien LIKE '%fundo%'";
+$sql = "SELECT codIndice,CONCAT(Notario.nom_not,' ',Notario.mat_not,' ',Notario.pat_not) AS notario,indices.otorgante,indices.favorecido,indices.fecha,indices.subserie,indices.folio,indices.escritura,indices.bien FROM indices INNER JOIN Notario ON indices.codNotario=Notario.codNotario WHERE indices.bien LIKE '%$bien%'";
 
-
-$result = $link->query($sql);
+$result = $conn->ConsultaCon($sql);
 $total	= $result->num_rows;
 
 ?>
@@ -72,11 +70,6 @@ while ($lista1 = $result->fetch_assoc()) {
 
 						</tfoot>
 					</table>
-
-					<div class="btn-group" role="group" aria-label="...">
-						<a href="listado.imprimir.php" class="btn btn-default" target="_blank"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir Lista</a>
-
-					</div>
 
 			</div>
 		</div>

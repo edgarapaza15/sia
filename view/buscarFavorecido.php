@@ -7,14 +7,13 @@ require_once("../model/Conexion.php");
 
 //Conexion con Base de Datos
 $conn = new Conexion();
-$link = $conn->Conectar();
 
 $favorecido = $_POST["txtFavorecido"];
 
 $sql = "SELECT indices.codIndice,CONCAT(Notario.nom_not,' ',Notario.mat_not,' ',Notario.pat_not) AS notario,indices.otorgante,indices.favorecido,indices.fecha,indices.subserie,indices.folio,indices.escritura,indices.bien FROM indices INNER JOIN Notario ON indices.codNotario=Notario.codNotario WHERE indices.favorecido LIKE '%$favorecido%'";
 
 
-$result = $link->query($sql);
+$result = $conn->ConsultaCon($sql);
 $total  = $result->num_rows;
 
 ?>

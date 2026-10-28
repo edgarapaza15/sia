@@ -13,17 +13,12 @@ if (!empty($_SESSION['personal'])) {
 
     ?>
 
-<style>
-  body{
-    color: white;
-  }
-</style>
 <div class="container">
 
 	<div class="row">
 		<div class="col-md-12">
 
-			<center><h3>Proyectos en Indexación</h3></center>
+			<h3>Proyectos en indexación</h3>
 			<table class="table table-striped table-bordered table-condensed" >
 				<thead>
 					<tr>

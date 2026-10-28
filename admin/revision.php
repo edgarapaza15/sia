@@ -14,19 +14,11 @@ session_start();
   $_SESSION['year'] = $year;
 ?>
 
-<style>
-  .btns{
-    display: flex;
-    align-item: center;
-  }
-
-</style>
-
 <div class="container">
   <div class="row">
     <div class="col-6">
       <h2>
-        Listado de Ingresos para revision
+        Listado de ingresos para revisión
       </h2>
       <div id="respuesta" class="alert alert-success"></div>
     </div>

@@ -22,26 +22,9 @@ if (!empty($_SESSION['personal'])) {
 		}
   </script>
 
-<style>
-    body,{
-        font-size: 18px;
-    }
-    label{
-      color: #6E6E6E;
-    }
-    .cajas{
-      background-color: #FDEBEB;
-      border: 2px solid #890926;
-      font-size: 18px;
-    }
-  </style>
-
 	<div class="container">
 
 		<h3>Notario: <?php echo $_REQUEST['Notario'];?></h3>
-		<p>
-			<?php echo "IdPersonal: " . $_SESSION['personal']; ?>
-		</p>
 
 		<form class="form-horizontal" method='post' name='fregistro' id='fregistro' action='../controller/nuevo-verifica.php' role='form'>
 		<div class="row">
