@@ -3,27 +3,19 @@ require_once("Conexion.php");
 
 class Personal
 {
-	private $con;
+	private $conn;
 
 	function __construct() {
 
-		$conexion = new Conexion();
-		$this->con = $conexion->Conectar();
-		return $this->con;
+		$this->conn = new Conexion();
+		return $this->conn;
 	}
 
 	public function getPersonal($idpersonal)
 	{
 
-		$sql = "SELECT concat(nom_usu,' ', pat_usu, ' ', mat_usu) as trabajador FROM usuarios WHERE cod_usu = $idpersonal;";
-		if(!$result = $this->con->query($sql)){
-			echo "Error Getpersonal: " . mysqli_error($this->con);
-		}
-
-		$data = $result->fetch_array();
-		return $data;
-
-		mysqli_close($this->con);
-
+    $sql = "SELECT concat(nom_usu,' ', pat_usu, ' ', mat_usu) as trabajador FROM usuarios WHERE cod_usu = $idpersonal;";
+    $data = $this->conn->ConsultaArray($sql);
+    return $data;
 	}
 }

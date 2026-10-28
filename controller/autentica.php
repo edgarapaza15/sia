@@ -3,8 +3,8 @@
 session_start();
 require_once("../model/login.model.php");
 
-$user = $_POST['txtusuario'];
-$pass = $_POST['txtpassword'];
+echo $user = trim(strtolower($_POST['txtusuario']));
+echo $pass = trim(strtolower($_POST['txtpassword']));
 
 $login = new Login();
 $data = $login->Acceso($user, $pass);

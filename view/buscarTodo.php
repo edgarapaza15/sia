@@ -7,7 +7,6 @@ require_once("../model/Conexion.php");
 
 //Conexion con Base de Datos
 $conn = new Conexion();
-$link = $conn->Conectar();
 
 $sql = "SELECT i.codIndice, CONCAT(n.nom_not,' ',n.mat_not,' ',n.pat_not) AS notario,
 i.otorgante,i.favorecido,i.fecha,i.subserie,i.folio, i.escritura,i.bien
@@ -15,7 +14,7 @@ FROM indices as i, Notario as n
 WHERE i.codNotario = n.codNotario LIMIT 1000;";
 //echo $trabajando;
 
-$result = $link->query($sql);
+$result = $conn->ConsultaCon($sql);
 $total = $result->num_rows;
 
 ?>

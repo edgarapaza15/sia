@@ -1,25 +1,64 @@
 <?php
-
-require_once "../config/config.php";
-
 class Conexion
 {
-    private $host = "localhost";
-    private $user = "usuario";
-    private $pass = "archivo123$";
-    private $db = "indices";
+    private $conn;
 
-    public function Conectar()
+    public function __construct()
     {
-        $mysqli = new mysqli($this->host, $this->user, $this->pass, $this->db);
-        $mysqli->set_charset("utf8mb4");
-        if ($mysqli->connect_errno) {
-            echo "Error al contenctar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        $host = "localhost";
+        $user = "usuario";
+        $pass = "archivo123$";
+        $db   = "indices";
+
+        $this->conn = new mysqli($host, $user, $pass, $db);
+
+        if ($this->conn->connect_errno) {
+            echo "Error al contenctar a MySQL: (" . $this->conn->connect_errno . ") " . $this->conn->connect_error;
             exit();
         }
 
-        #echo $mysqli->host_info . " Test eb Conection.php";
+        //echo $this->conn->host_info . "KATARI";
+        return $this->conn;
+    }
 
-        return $mysqli;
+    public function ConsultaSin($sql)
+    {
+        // Sirve para: INSERT, UPDATE, DELETE
+        try {
+            $this->conn->query($sql);
+            $res = true;
+        } catch (Exception $e) {
+            echo 'Excepción: ',  $e->getMessage();
+            $res = false;
+        }
+
+        return $res;
+    }
+
+    public function ConsultaCon($sql)
+    {
+        // Sirve para: SELECT
+        try {
+            $result = $this->conn->query($sql);
+        } catch (Exception $e) {
+            echo 'Excepción: ',  $e->getMessage();
+        }
+
+        return $result;
+    }
+
+    public function ConsultaArray($sql)
+    {
+        // Sirve para: SELECT convertido en array
+        try {
+            $result = $this->conn->query($sql);
+        } catch (Exception $e) {
+            echo 'Excepción: ',  $e->getMessage();
+        }
+
+        $data = $result->fetch_array(MYSQLI_ASSOC);
+
+        return $data;
     }
 }
+

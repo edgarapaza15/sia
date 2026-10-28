@@ -1,32 +1,240 @@
+/* SIA — Login · Archivo Regional de Puno */
+:root {
+  --ink: #0c2a3a;
+  --ink-soft: #1a4558;
+  --teal: #0e7490;
+  --teal-deep: #0a5c70;
+  --gold: #b8892c;
+  --paper: #f3f0ea;
+  --paper-card: #fffcf7;
+  --muted: #5c6b73;
+  --border: rgba(12, 42, 58, 0.12);
+  --shadow: 0 24px 48px rgba(12, 42, 58, 0.18);
+  --radius: 14px;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
 body {
-  background-color: rgb(88, 197, 88);
-  font-family: 'Baloo Tamma 2', cursive;
+  min-height: 100%;
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(14, 116, 144, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 80%, rgba(184, 137, 44, 0.16), transparent 50%),
+    linear-gradient(160deg, #0c2a3a 0%, #13485c 42%, #0e7490 100%);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+.login-shell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem 1.5rem;
 }
 
 .caja {
-  margin: 150px auto;
-  background-color: rgb(228, 228, 228);
-  padding: 20px;
-  width: 40%;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px rgb(128, 127, 127);
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
+  padding: 2.5rem 2.25rem 2rem;
+  background: var(--paper-card);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  animation: rise-in 0.55s ease-out both;
+}
 
+.caja::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+}
+
+.login-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.75rem;
+}
+
+.login-brand .seal {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #f5e6c8, var(--gold) 55%, #8a6420);
+  box-shadow: 0 0 0 3px rgba(184, 137, 44, 0.25);
+  margin-bottom: 0.5rem;
+  animation: seal-pulse 3.5s ease-in-out infinite;
+}
+
+.caja h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 4vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.caja > p,
+.login-brand p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.form-group {
+  margin-bottom: 1.15rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(14, 116, 144, 0.15);
+}
+
+.form-control::placeholder {
+  color: #9aa8b0;
+}
+
+.caja .col-md-6 {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin-top: 0.5rem;
 }
 
 .boton {
   width: 100%;
-  padding: 10px;
-  background: rgb(12, 117, 12);
-  color: white;
+  margin: 0;
+  padding: 0.9rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(14, 116, 144, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.boton:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 14px 28px rgba(14, 116, 144, 0.35);
+  transform: translateY(-1px);
+}
+
+.boton:active {
+  transform: translateY(1px);
 }
 
 footer {
   text-align: center;
-  height: 150px;
-  background-color: rgb(24, 70, 3);
-  color: white;
-  padding: 20px;
+  padding: 1.25rem 1.5rem 1.75rem;
+  background: transparent;
+  color: rgba(255, 252, 247, 0.78);
+  font-size: 0.85rem;
+  height: auto;
+  animation: fade-up 0.7s ease 0.15s both;
+}
+
+footer p {
+  margin: 0.2rem 0;
+}
+
+footer p:first-child {
+  font-weight: 500;
+  color: rgba(255, 252, 247, 0.95);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes seal-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(184, 137, 44, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(184, 137, 44, 0.12);
+  }
+}
+
+@media (max-width: 480px) {
+  .caja {
+    padding: 2rem 1.35rem 1.5rem;
+  }
 }

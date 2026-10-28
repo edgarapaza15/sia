@@ -4,24 +4,18 @@ require_once("Conexion.php");
 
 class Login
 {
-    private $con;
+    private $conn;
 
     public function __construct()
     {
-        $conexion = new Conexion();
-        $this->con = $conexion->Conectar();
-        return $this->con;
+        $this->conn = new Conexion();
+        return $this->conn;
     }
 
     public function Acceso($user, $pass)
     {
         $sql = "SELECT cod_usu, niv_usu, chk_usu FROM usuarios WHERE log_usu='$user' AND psw_usu='$pass';";
-
-        if (!$result = $this->con->query($sql)) {
-            echo "Error1: " . mysqli_error($this->con);
-        }
-
-        $data = $result->fetch_array(MYSQLI_ASSOC);
+        $data = $this->conn->ConsultaArray($sql);
         return $data;
     }
 }

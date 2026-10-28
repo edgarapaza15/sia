@@ -1,17 +1,13 @@
 <?php
 session_start();
 require_once "header.php";
-
-echo $_SESSION['administrador'];
-
 ?>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Panel de Administracion de Personal y Datos de Indices</h2>
-
-            <p>Utilice los menus en la parte superior.</p>
+            <h2>Panel de administración</h2>
+            <p>Gestión de personal, revisión de índices y reportes. Use el menú superior.</p>
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">

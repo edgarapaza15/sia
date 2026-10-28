@@ -12,16 +12,11 @@ $fecha_inicio = $_GET['fecha_inicio'];
 $fecha_final = $_GET['fecha_final'];
 
 ?>
-<style>
-  body{
-    background-color: #193549;
-    color: white;
-  }
-</style>
-
 <div class="container">
   <div class="row">
-    <h1>Reportes</h1>
+    <div class="col-12">
+      <h1>Reportes</h1>
+    </div>
   </div>
 
   <!-- COLUMAN IZQUIERDA OPCIONES DE BUSQUEDA -->
